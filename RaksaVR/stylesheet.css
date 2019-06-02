@@ -45,7 +45,6 @@ body {
 /* Container elements */
 .container-1 {
     margin: 0 auto;
-    /* background-image: url("img/urban.jpg"); */
     background-position: center;
     background-size: cover;
     width: 100%;
