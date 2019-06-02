@@ -11,7 +11,7 @@
     
     
 <body>
-    <!-- Navigaatiopalkki -->
+    <!-- Navigationbar -->
     <div class="topnav">
       <a href="index.php">Home</a>
       <a href="credits.php">Credits</a>
@@ -25,7 +25,7 @@
             $sql = "SELECT * FROM gallery";
             $result = mysqli_query($db, $sql);
 
-            // Printattava sisältö
+            // Things you want to print from the database
             while($row = mysqli_fetch_array($result)) {
                 echo "<div id='image-div'>";
                     echo "<img src='gallery/".$row['image']."' >";
@@ -36,7 +36,7 @@
         ?>
     </div>
 
-    <!-- Etusivun tekstilaatikko -->
+    <!-- Uploading form -->
     <div class="container-1">
         <form class="screenshot-form" method="post" action = "post.php" enctype="multipart/form-data">
             <input type="hidden" name="size" value="10000000">
