@@ -6,22 +6,19 @@
     <meta http-equiv="X-UA-Compatible">
     <link rel="stylesheet" href="stylesheet.css">
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC" rel="stylesheet">
-    <title>RaksaVR</title>
+    <title>ScreenCap</title>
     </head>
     
     
 <body>
     <!-- Navigationbar -->
     <div class="topnav">
-      <a href="index.php">Home</a>
-      <a href="credits.php">Credits</a>
-      <a href="about.php">About</a>
       <a class="active" href="#">Gallery</a>
 </div>
 
     <div class="Gallery">
         <?php
-            $db = mysqli_connect("localhost", "root", "", "raksa");
+            $db = mysqli_connect("localhost", "user", "password", "database name");
             $sql = "SELECT * FROM gallery";
             $result = mysqli_query($db, $sql);
 
@@ -29,6 +26,7 @@
             while($row = mysqli_fetch_array($result)) {
                 echo "<div id='image-div'>";
                     echo "<img src='gallery/".$row['image']."' >";
+                    // Text not needed here either, but you have the option
                     echo "<p style='color: white;'>".$row['text']."</p>";
                 echo "</div>";
             }
