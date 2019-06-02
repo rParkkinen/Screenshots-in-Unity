@@ -1,4 +1,5 @@
 <?php 
+// Random number generator, so the database doesn't replace the old pictures
 function randomDigits($length){
     $digits = 0;
     $numbers = range(0,9);
@@ -7,42 +8,31 @@ function randomDigits($length){
     $digits .= $numbers[$i];
     return $digits;
 }
-//Kun upload nappia painetaan
-//if (isset($_POST['upload'])) {
-    //missä kuva sijaitsee
+
+   
     $randomNumber = randomDigits(5);
     $target = 'gallery/'. $randomNumber .basename($_FILES['image']['name']);
 
-    //Tietokantayhteys
+    // Connection to the database, it may be anything
     $db = mysqli_connect("localhost", "root", "", "raksa");
 
-    //Kaikki tarvittava data lomakkeesta
+    // All the needed things from the form
     $image = $_FILES['image']['name'];
+    // Text not needed in this case
     $text = $_POST['text'];
     $finalimage = $randomNumber . $image;
 
-    //Kuvien siirto kansioon tietokannassa
+    // When uploaded, files move in the database
     if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-        // print_r($_FILES);
-        // die;
-    } else {
-        
     }
-    // header ('Location: screenshots.php');
 
     if ($_FILES['image']['name'] == "") {
         header('Location: screenshots.php');
     } else {
         $sql = "INSERT INTO gallery (image, text) VALUES ('$finalimage', '$text')";
-        mysqli_query($db, $sql); //tallentaa tiedot tietokantaan
+        mysqli_query($db, $sql); //Saving the file(s) to the database
     }
     header('Location: screenshots.php');
     
-// } else {
-//    echo '<script>console.log("huu")</script>';
-// }
-
-
-
 
 ?>
